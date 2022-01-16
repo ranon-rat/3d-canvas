@@ -28,8 +28,8 @@ export class Camera {
 
 
 
-    this.pinhole.x = this.xPos;
-    this.pinhole.y = this.yPos;
+    this.pinhole.x = width/2
+    this.pinhole.y = height/2
 
 
   }
@@ -81,8 +81,8 @@ export class Figure3D {
 
 
       projected_nodes.push({
-        x: (camera.pinhole.z / d.z) * d.x + camera.witdth / 2,
-        y: (camera.pinhole.z / d.z) * d.y + camera.height / 2
+        x: (camera.pinhole.z / d.z) * d.x + camera.pinhole.x,
+        y: (camera.pinhole.z / d.z) * d.y + camera.pinhole.y
       })
 
     });
