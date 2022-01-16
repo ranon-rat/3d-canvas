@@ -19,14 +19,13 @@ export class Camera {
   rad360: number = 0;
 
 
-  pinhole = { x: 0, y: 0, z: 100}
+  pinhole = { x: 1, y: 1, z: 100}
 
   constructor(width: number = 500, height: number = 500) {
     this.zPos = 2;
     this.witdth = width;
     this.height = height;
-    this.xPos = width / 2;
-    this.yPos = height / 2;
+ 
 
 
     this.pinhole.x=this.xPos;
@@ -69,15 +68,15 @@ export class Figure3D {
       let s = { x: Math.sin(camera.theta.x), y: Math.sin(camera.theta.y), z: Math.sin(camera.theta.z) }
 
       let d = {
-        x: c.y * (s.z * y - c.z * x) - s.x * z,
-        y: s.x * (c.y * z + s.y * (s.z * y + c.z * x)) + c.x * (c.z * y + s.z * x),
+        x: c.y * (s.z * y + c.z * x) - s.x * z,
+        y: s.x * (c.y * z + s.y * (s.z * y + c.z * x)) + c.x * (c.z * y - s.z * x),
         z: c.x * (c.y * z + s.y * (s.z * y + c.z * x)) - s.x * (c.z * y - s.z * x)
       }
 
 
       projected_nodes.push({
-        x:( (camera.pinhole.z / d.z) * d.x + camera.pinhole.x),
-        y:((camera.pinhole.z / d.z) * d.y + camera.pinhole.y)
+        x:(camera.witdth*d.x)/(d.z*camera.pinhole.x)*camera.pinhole.z,
+        y:(camera.height*d.y)/(d.z*camera.pinhole.y)*camera.pinhole.z
       })
 
     });
