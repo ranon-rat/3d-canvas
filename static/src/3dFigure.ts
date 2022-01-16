@@ -37,14 +37,14 @@ export class Camera {
 
 export class Figure3D {
   vertices: Nodes[] = [
-    { x: 200 - 100, y: 200 - 100, z: 200 + 100 },
-    { x: 200 + 100, y: 200 - 100, z: 200 + 100 },
-    { x: 200 + 100, y: 200 + 100, z: 200 + 100 },
-    { x: 200 - 100, y: 200 + 100, z: 200 + 100 },
-    { x: 200 - 100, y: 200 - 100, z: 200 - 100 },
-    { x: 200 + 100, y: 200 - 100, z: 200 - 100 },
-    { x: 200 + 100, y: 200 + 100, z: 200 - 100 },
-    { x: 200 - 100, y: 200 + 100, z: 200 - 100 }]
+    { x: - 100, y:  - 100, z: + 100 },
+    { x: + 100, y:  - 100, z: + 100 },
+    { x: + 100, y:  + 100, z: + 100 },
+    { x: - 100, y:  + 100, z: + 100 },
+    { x: - 100, y:  - 100, z: - 100 },
+    { x: + 100, y:  - 100, z: - 100 },
+    { x: + 100, y:  + 100, z: - 100 },
+    { x: - 100, y:  + 100, z: - 100 }]
     ;
   color: string = `(${55 + Math.random() * 200},${20 + Math.random() * 200},${55 + Math.random() * 200
     },0.5)`;
@@ -75,8 +75,8 @@ export class Figure3D {
 
 
       projected_nodes.push({
-        x: ((camera.witdth * d.x) / (d.z * camera.pinhole.x)) * camera.pinhole.z,
-        y: ((camera.height * d.y) / (d.z * camera.pinhole.y)) * camera.pinhole.z
+        x: (camera.pinhole.z/d.z)*d.x + camera.witdth / 2,
+        y: (camera.pinhole.z/d.z)*d.y + camera.height / 2
       })
 
     });
