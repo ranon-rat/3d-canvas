@@ -22,11 +22,11 @@ document.addEventListener("keydown", (e) => {
     "ArrowUp"    : ()=>camera.zPos+=1,
     "ArrowDown"  : ()=>camera.zPos-=1,
     " "      : ()=>camera.yPos+=1,
-    "Shift"      : ()=>camera.yPos-=1,
-    "w"      : ()=>camera.theta.x+=1*camera.rad,
-    "s"      : ()=>camera.theta.x-=1*camera.rad,
-    "a"      : ()=>camera.theta.y+=1*camera.rad,
-    "d"      : ()=>camera.theta.y-=1*camera.rad,
+    "z"      : ()=>camera.yPos-=1,
+    "w"      : ()=>camera.theta.x+=1,
+    "s"      : ()=>camera.theta.x-=1,
+    "a"      : ()=>camera.theta.y+=1,
+    "d"      : ()=>camera.theta.y-=1,
 
 }[e.key]
 
