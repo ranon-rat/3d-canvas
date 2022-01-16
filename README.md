@@ -34,7 +34,7 @@ let S = { x: Math.sin(camera.theta.x * camera.rad), y: Math.sin(camera.theta.y *
 let d = {
   x: C.y * (S.z * Y+ C.z * X) - S.y * Z,
   y: S.x * (C.y * Z + S.y * (S.z * Y + C.z * X)) + C.x * (C.z * Y - S.z * X),
-  z: (C.x * (C.y * Z + S.y * (S.z * Y + C.z * X)) - S.x * (C.z * Y - S.z * X))/2
+  z: (C.x * (C.y * Z + S.y * (S.z * Y + C.z * X)) - S.x * (C.z * Y - S.z * X))
 }
 
 let bX= (camera.pinhole.z / d.z) * d.x + camera.pinhole.x
