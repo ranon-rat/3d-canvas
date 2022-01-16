@@ -37,52 +37,52 @@ export class Camera {
 
 export class Figure3D {
   vertices: Nodes[] = [
-    { x: - 100, y:  - 100, z: + 100 },
-    { x: + 100, y:  - 100, z: + 100 },
-    { x: + 100, y:  + 100, z: + 100 },
-    { x: - 100, y:  + 100, z: + 100 },
-    { x: - 100, y:  - 100, z: - 100 },
-    { x: + 100, y:  - 100, z: - 100 },
-    { x: + 100, y:  + 100, z: - 100 },
-    { x: - 100, y:  + 100, z: - 100 }]
+    { x:200 - 100, y: 200- 100, z: 200+ 100 },
+    { x:200 + 100, y: 200- 100, z: 200+ 100 },
+    { x:200 + 100, y: 200+ 100, z: 200+ 100 },
+    { x:200 - 100, y: 200+ 100, z: 200+ 100 },
+    { x:200 - 100, y: 200- 100, z: 200- 100 },
+    { x:200 + 100, y: 200- 100, z: 200- 100 },
+    { x:200 + 100, y: 200+ 100, z: 200- 100 },
+    { x:200 - 100, y: 200+ 100, z: 200- 100 }]
     ;
   color: string = `(${55 + Math.random() * 200},${20 + Math.random() * 200},${55 + Math.random() * 200
     },0.5)`;
   constructor() { }
   show(ctx: CanvasRenderingContext2D, camera: Camera) {
     ctx.fillStyle = "black"
-    ctx.fillRect(0, 0, camera.witdth * 2, camera.height);
+    ctx.fillRect(0, 0, camera.witdth *2, camera.height*2);
 
 
 
     let projected_nodes: { x: number, y: number, }[] = []
     this.vertices.forEach((node) => {
-      let x = node.x - camera.xPos;
-      let y = node.y - camera.yPos;
-      let z = node.z - camera.zPos;
+      let X = camera.xPos - node.x;
+      let Y = camera.yPos - node.y;
+      let Z = camera.zPos - node.z;
 
 
 
 
-      let c = { x: Math.cos(camera.theta.x * camera.rad), y: Math.cos(camera.theta.y*camera.rad), z: Math.cos(camera.theta.z*camera.rad) }
-      let s = { x: Math.sin(camera.theta.x * camera.rad), y: Math.sin(camera.theta.y*camera.rad), z: Math.sin(camera.theta.z*camera.rad) }
+      let C = { x: Math.cos(camera.theta.x * camera.rad), y: Math.cos(camera.theta.y * camera.rad), z: Math.cos(camera.theta.z * camera.rad) }
+      let S = { x: Math.sin(camera.theta.x * camera.rad), y: Math.sin(camera.theta.y * camera.rad), z: Math.sin(camera.theta.z * camera.rad) }
 
       let d = {
-        x: c.y * (s.z * y + c.z * x) - s.x * z,
-        y: s.x * (c.y * z + s.y * (s.z * y + c.z * x)) + c.x * (c.z * y - s.z * x),
-        z:c.x * (c.y * z + s.y * (s.z * y + c.z * x)) - s.x * (c.z * y - s.z * x)
+        x: C.y * (S.z * Y+ C.z * X) - S.y * Z,
+        y: S.x * (C.y * Z + S.y * (S.z * Y + C.z * X)) + C.x * (C.z * Y - S.z * X),
+        z: (C.x * (C.y * Z + S.y * (S.z * Y + C.z * X)) - S.x * (C.z * Y - S.z * X))/2
       }
 
 
       projected_nodes.push({
-        x: (camera.pinhole.z/d.z)*d.x + camera.witdth / 2,
-        y: (camera.pinhole.z/d.z)*d.y + camera.height / 2
+        x: (camera.pinhole.z / d.z) * d.x + camera.witdth / 2,
+        y: (camera.pinhole.z / d.z) * d.y + camera.height / 2
       })
 
     });
     projected_nodes.forEach((node, i) => {
 
-      console.log(node.x, node.y,i)
+      console.log(node.x, node.y, i)
       ctx.beginPath();
       ctx.fillStyle = "rgba" + this.color;
 
@@ -105,6 +105,14 @@ export class Figure3D {
       })
 
     })
+    let x=10
+    let y=10;
+    let r=50;
+    let theta=camera.theta.y
+   ctx.strokeStyle = "rgba" + this.color;
+   ctx.moveTo(x, y);
+   ctx.lineTo(x + r * Math.cos(theta), y + r * Math.sin(theta));
+
   }
 
 }

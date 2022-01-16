@@ -15,9 +15,8 @@ window.addEventListener("resize", (e) => {
 // i hate myself
 document.addEventListener("keydown", (e) => {
   const callback = {
-    "ArrowLeft"  : () =>camera.xPos-=1,
-    
-    "ArrowRight" :()=>camera.xPos+=1,
+    "ArrowLeft"  : ()=>camera.xPos+=1,
+    "ArrowRight" : ()=>camera.xPos-=1,
     
     "ArrowUp"    : ()=>camera.zPos+=1,
     "ArrowDown"  : ()=>camera.zPos-=1,
@@ -25,8 +24,13 @@ document.addEventListener("keydown", (e) => {
     "z"      : ()=>camera.yPos-=1,
     "w"      : ()=>camera.theta.x+=1,
     "s"      : ()=>camera.theta.x-=1,
-    "a"      : ()=>camera.theta.y+=1,
-    "d"      : ()=>camera.theta.y-=1,
+    "a"      : ()=>camera.theta.y-=1,
+    "d"      : ()=>camera.theta.y+=1,
+    "q"      : ()=>camera.theta.z+=1,
+    "e"      : ()=>camera.theta.z-=1,
+    "h"      : ()=>camera.pinhole.z+=1,
+    "g"      : ()=>camera.pinhole.z-=1,
+     
 
 }[e.key]
 
