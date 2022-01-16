@@ -53,7 +53,13 @@ export class Figure3D {
     ctx.fillStyle = "black"
     ctx.fillRect(0, 0, camera.witdth *2, camera.height*2);
 
-
+    let x=10
+    let y=10;
+    let r=50;
+    let theta=camera.theta.y
+   ctx.strokeStyle = "rgba" + this.color;
+   ctx.moveTo(x, y);
+   ctx.lineTo(x + r * Math.cos(theta), y + r * Math.sin(theta));
 
     let projected_nodes: { x: number, y: number, }[] = []
     this.vertices.forEach((node) => {
@@ -105,13 +111,7 @@ export class Figure3D {
       })
 
     })
-    let x=10
-    let y=10;
-    let r=50;
-    let theta=camera.theta.y
-   ctx.strokeStyle = "rgba" + this.color;
-   ctx.moveTo(x, y);
-   ctx.lineTo(x + r * Math.cos(theta), y + r * Math.sin(theta));
+  
 
   }
 
