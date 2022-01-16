@@ -12,6 +12,7 @@ window.addEventListener("resize", (e) => {
   canvas.width = window.innerWidth;
   fig.show(ctx,camera)
 });
+// i hate myself
 document.addEventListener("keydown", (e) => {
   const callback = {
     "ArrowLeft"  : () =>camera.theta.x+=1*180/Math.PI,
